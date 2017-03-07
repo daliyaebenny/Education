@@ -1,0 +1,5 @@
+com\company\Action\LoginAction.class
+com\company\Action\SignUpAction.class
+com\company\Form\LoginForm.class
+com\company\resources\ApplicationConstants.class
+com\company\resources\DatabaseAccess.class
