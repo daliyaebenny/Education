@@ -26,34 +26,7 @@ public class RestApiController {
 	public static final Logger logger = LoggerFactory.getLogger(RestApiController.class);
 
 	@Autowired
-	UserService userService; /*
-								 * Service which will do all data
-								 * retrieval/manipulation work
-								 */
-
-	/*
-	 * // -------------------Retrieve All //
-	 * Users---------------------------------------------
-	 * 
-	 * @RequestMapping(value = "/user/", method = RequestMethod.GET) public
-	 * ResponseEntity<List<User>> listAllUsers() { List<User> users =
-	 * userService.findAllUsers(); if (users.isEmpty()) { return new
-	 * ResponseEntity(HttpStatus.NO_CONTENT); // You many decide to return
-	 * HttpStatus.NOT_FOUND } return new ResponseEntity<List<User>>(users,
-	 * HttpStatus.OK); }
-	 * 
-	 * // -------------------Retrieve Single //
-	 * User------------------------------------------
-	 * 
-	 * @RequestMapping(value = "/user/{id}", method = RequestMethod.GET) public
-	 * ResponseEntity<?> getUser(@PathVariable("id") long id) {
-	 * logger.info("Fetching User with id {}", id); User user =
-	 * userService.findById(id); if (user == null) {
-	 * logger.error("User with id {} not found.", id); return new
-	 * ResponseEntity(new CustomErrorType("User with id " + id + " not found"),
-	 * HttpStatus.NOT_FOUND); } return new ResponseEntity<User>(user,
-	 * HttpStatus.OK); }
-	 */
+	UserService userService; 
 
 	/* USER LOGIN :: Read of CRUD */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -61,7 +34,8 @@ public class RestApiController {
 	public ResponseEntity<?> loginUser(@PathVariable("uName") String uName, @PathVariable("password") String password) {
 		logger.info("Fetching User for login");
 		User user = null;
-		if ((!uName.equals(null) || uName != null || !uName.isEmpty()) && (!password.equals(null) || password != null || !uName.isEmpty())) {
+		if ((!uName.equals(null) || uName != null || !uName.isEmpty())
+				&& (!password.equals(null) || password != null || !uName.isEmpty())) {
 			user = userService.login(uName, password);
 		}
 		if (user == null) {
@@ -97,54 +71,4 @@ public class RestApiController {
 
 	}
 
-	/*
-	 * FORGOT PASSWORD :: Update of CRUD
-	 * 
-	 * @SuppressWarnings({ "rawtypes", "unchecked" })
-	 * 
-	 * @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT) public
-	 * ResponseEntity<?> updateUser(@PathVariable("id") long id, @RequestBody
-	 * User user) { logger.info("Updating User with id {}", id);
-	 * 
-	 * User currentUser = userService.findById(id);
-	 * 
-	 * if (currentUser == null) {
-	 * logger.error("Unable to update. User with id {} not found.", id); return
-	 * new ResponseEntity(new CustomErrorType("Unable to upate. User with id " +
-	 * id + " not found."), HttpStatus.NOT_FOUND); }
-	 * 
-	 * currentUser.setfName(user.getfName());
-	 * currentUser.setlName(user.getlName());
-	 * currentUser.seteMail(user.geteMail());
-	 * currentUser.setPhoneNo(user.getPhoneNo());
-	 * currentUser.setPassword(user.getPassword());
-	 * 
-	 * userService.updateUser(currentUser); return new
-	 * ResponseEntity<User>(currentUser, HttpStatus.OK); }
-	 */
-
-	/*
-	 * // ------------------- Delete a //
-	 * User-----------------------------------------
-	 * 
-	 * @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	 * public ResponseEntity<?> deleteUser(@PathVariable("id") long id) {
-	 * logger.info("Fetching & Deleting User with id {}", id);
-	 * 
-	 * User user = userService.findById(id); if (user == null) {
-	 * logger.error("Unable to delete. User with id {} not found.", id); return
-	 * new ResponseEntity(new CustomErrorType("Unable to delete. User with id "
-	 * + id + " not found."), HttpStatus.NOT_FOUND); }
-	 * userService.deleteUserById(id); return new
-	 * ResponseEntity<User>(HttpStatus.NO_CONTENT); }
-	 * 
-	 * // ------------------- Delete All Users-----------------------------
-	 * 
-	 * @RequestMapping(value = "/user/", method = RequestMethod.DELETE) public
-	 * ResponseEntity<User> deleteAllUsers() {
-	 * logger.info("Deleting All Users");
-	 * 
-	 * userService.deleteAllUsers(); return new
-	 * ResponseEntity<User>(HttpStatus.NO_CONTENT); }
-	 */
 }
