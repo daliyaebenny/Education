@@ -23,7 +23,7 @@ Steps
  
  Method :POST
  
- url:http://localhost:8080/Login-Registration/api/user/
+ url:http://localhost:8080/RegistrationApplication/api/user/
  
  Header :ContentType - Application/json
  
@@ -31,7 +31,7 @@ Steps
  
  Method :GET
  
- url :http://localhost:8080/Login-Registration/api/user/sam.tom@gmail.com/SamTom1!
+ url :http://localhost:8081/LoginApplication/api/user/daliyaebenny@gmail.com/Daliya.Benny5%
  
  Header :ContentType - Application/json
  
